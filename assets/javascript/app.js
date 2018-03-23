@@ -54,8 +54,11 @@ function writeQuestion() {
 
     //now we going to append our question to the questions id onthe html page (make it render). Every time we write a questions, we append (one at a time). If we used write, it wold be replaced each time. Append will add to the list each time the for loop runs.
     //use jquery to add 
-    $('#questionID').append(writeQuestion); //at first the write Question only had a p tag then we added a class. Then we added an attr. Now we're appending all those details the DOM one is visual the others stored.
+    $('#questionID').append(writeQuestion); //at first the write Question only had a p tag and line break tag; then I added a class. Then I added an attr. Now I'll appending all those details to the DOM: One will be rendered visually; the others will be stored.
 
-    //INSIDE this existing existing for loop create another loop we'll have another for loop with the answers for the anser choice and create the radio buttons. Don't use i use another letter (maybe)
+    //NEXT STEPS: Inside this existing existing for loop, create another for loop with the answers for the answer choice and create the radio buttons. Don't use i use another letter (maybe letter j)
+
+    for(j=0;j<answerChoices; j++);
+    var writeAnswer = $("<p>" + answerChoices[j] + "</p>");
  }
 }
