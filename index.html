@@ -20,11 +20,25 @@
                 <p>Lorem Ipsum</p>
                 <p class="lead">
                   <a class="btn btn-primary btn-lg" href="#" role="button">Start Quiz</a>
+                  <a id="submit" class="btn btn-lg" href="#" role="button">Done</a>
+
                 </p>
               </div>
         <!-- all questions will be dumped into this div -->
         <div id="questionID">
-          <div id="answerChoiceID">
+        <!-- here is where we'll dynamcially create elements -->
+        </div>
+
+        <div id="questionsBucket">
+          <div class="question">
+            <p>Sample question</p>
+            <div><input type="radio"> sample answer 1</div>
+              //each answer will have an onclick event - array of user answers
+            <div><input type="radio"> sample answer 2</div>
+            <div><input type="radio"> sample answer 3</div>
+            <div><input type="radio"> sample answer 4</div>
+
+          <!-- also will need a submit would have loop to move through answer key -->
 
           </div>
         </div>

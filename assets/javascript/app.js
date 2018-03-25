@@ -43,37 +43,66 @@ var answerChoices =[
 ["1 tree","5 trees","7 trees","15 trees"],
 ];
 
-var answerKey = ["80 billion", "$1 for every $10 spent"];
+var answerKey = ["1", "0", "0", "1", "0", "1"];
 
 //write questions function. purpose is to only write questions onto screen
 
 function writeQuestion() {
     for(i=0; i< questions.length; i++) {
-        var addQuestion = $("<div>" + questions[i] + "</div>"); //closing br tag must go after p tag
+        var questionDiv = $("<div>"); //this is the container
+        var questionP = $("<p>") // p tag created
+        questionP.text(questions[i]); // copying  question to p tag
+        questionDiv.append(questionP); // now we append to the the p tag (questionP) to the div containter in the DOM
 
     // inside our for loop create a class for questions, so we can add a style/attribute to the class. state name of variable first.
-        addQuestion.addClass("questionStyle");
+    questionDiv.addClass("questionStyle");
     
     //now we add an attribute and that is going to be the correct answer to the question
-        addQuestion.attr("data-question-value", answerKey[i]);
+    questionDiv.attr("data-question-value", answerKey[i]);
 
     //then at some point, we're going to compare user answer with the actual answer (data-question-value variable which will be holding the correct answer). If correc the wins counter will go up.
 
+ //making another container to radio buttons/answers. Ensure this is not in for loop only need one container created per question not every radio button
+    // var answerChoicesDiv = $("<div>");
+
+    //loop over each answer choice before appending to the question id (list of questions in browser)
+        for (var j = 0; j < answerChoices[i].length; j++) {
+          var radButton = $('<input>'); //when creating elements for DOM they're inside < >; only use these for elements!!!
+          radButton.attr('type', 'radio');//set the attribute of type to radio
+          radButton.attr('name', 'answer-choice-' + i);//set the attribute of type to radio
+          //and index will lose it's type once the value goes the html, so it will be reflected as a sting, even though you're trying trying assign indeces of j to a value.
+          radButton.attr('value', j);//set the value for the radio input button; value is assigned to j value
+          radButton.text(answerChoices[i][j]); //this will write the questions at index and the answers at index
+          questionDiv.append(radButton);
+          questionDiv.append(answerChoices[i][j]);
+        }
+    
+
     //now we going to append our question to the questions id onthe html page (make it render). Every time we write a questions, we append (one at a time). If we used write, it wold be replaced each time. Append will add to the list each time the for loop runs.
     //use jquery to add 
-        $('#questionID').append(addQuestion); //at first the write Question only had a p tag and line break tag; then I added a class. Then I added an attr. Now I'll appending all those details to the DOM: One will be rendered visually; the others will be stored.
+        $('#questionID').append(questionDiv); //at first the write Question only had a p tag and line break tag; then I added a class. Then I added an attr. Now I'll appending all those details to the DOM: One will be rendered visually; the others will be stored.
 
         // append answer choices
         // writeAnswerChoicesForQuestion(i);
     }
-        for (var i = 0; i < answerChoices.length; i++) {
-            for (var j = 0; j < answerChoices[i].length; j++) {
-              var answers = $('#answerChoiceID');
-              var radButton = $('<button>'); //when creating elements for DOM they're inside < >
-              radButton.text(answerChoices[i][j]);
-              answers.append(radButton);
+ 
+    $('#submit').on('click', function() {
+        var questionDivs = $('.questionStyle'); // this gives us an array of all the question divs
+        // $.each(elementsToLoopOver, cb);
+        // questionDivs.each(cb);
+        $.each(questionDivs, function (index) { //look more on jquery .each.
+            var userSelectedAnswerChoiceInput = $(this).find('input:checked'); //this is the question div and .find is looking in the question div and trying to find which use input option is checked (which answer selected)
+            var userSelectedAnswerChoiceIndex = userSelectedAnswerChoiceInput.val();
+
+            console.log(answerKey[index], userSelectedAnswerChoiceIndex);
+            if (userSelectedAnswerChoiceIndex === answerKey[index]) {
+                console.log('got question ' + index + ' correct!')
+            } else {
+                console.log('got question ' + index + ' incorrect!')
             }
-          }
+            console.log();
+        })
+    });
 }
 
 // function writeAnswerChoicesForQuestion(indexForQuestion) {
