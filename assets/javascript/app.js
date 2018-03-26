@@ -17,7 +17,24 @@
 $(document).ready(function () {
     // $('.btn-btn-primary-btn-lg').click(function () {
     console.log("test!");
- 
+
+// $(document).on('click', '#startButton', function(e) {
+//     game.start();
+// });
+
+// start: function() {
+//     timer = setInterval(game.countdown, 1200);
+
+//     $('#subwrapper').prepend('<h2>Time Remaining: <span id="counter-number">45</span> Seconds</h2>');
+//     $('#start').remove();
+
+// }
+
+var CorrectAnswers = 0;
+var IncorrectAnswers = 0;
+var Unanswered = 0;
+// var myVar = setInterval(myTimer ,1000);
+
 var questions =
 ["On average, how many aluminum soda cans are used in the United States each year?",
 "What percentage of monetary purchasing goes to packaging materials?", 
@@ -43,14 +60,14 @@ var answerChoices =[
 ["1 tree","5 trees","7 trees","15 trees"],
 ];
 
-var answerKey = ["1", "0", "0", "1", "0", "1"];
+var answerKey = ["1", "0", "3", "0", "2", "3","0","0","1","3"];
+
 
 //write questions function. purpose is to only write questions onto screen
-
 function writeQuestion() {
     for(i=0; i< questions.length; i++) {
         var questionDiv = $("<div>"); //this is the container
-        var questionP = $("<p>") // p tag created
+        var questionP = $("<br><p>") // p tag created
         questionP.text(questions[i]); // copying  question to p tag
         questionDiv.append(questionP); // now we append to the the p tag (questionP) to the div containter in the DOM
 
@@ -67,7 +84,7 @@ function writeQuestion() {
 
     //loop over each answer choice before appending to the question id (list of questions in browser)
         for (var j = 0; j < answerChoices[i].length; j++) {
-          var radButton = $('<input>'); //when creating elements for DOM they're inside < >; only use these for elements!!!
+          var radButton = $('<br><input>'); //when creating elements for DOM they're inside < >; only use these for elements!!!
           radButton.attr('type', 'radio');//set the attribute of type to radio
           radButton.attr('name', 'answer-choice-' + i);//set the attribute of type to radio
           //and index will lose it's type once the value goes the html, so it will be reflected as a sting, even though you're trying trying assign indeces of j to a value.
@@ -75,6 +92,7 @@ function writeQuestion() {
           radButton.text(answerChoices[i][j]); //this will write the questions at index and the answers at index
           questionDiv.append(radButton);
           questionDiv.append(answerChoices[i][j]);
+          console.log(radButton);
         }
     
 
@@ -91,16 +109,26 @@ function writeQuestion() {
         // $.each(elementsToLoopOver, cb);
         // questionDivs.each(cb);
         $.each(questionDivs, function (index) { //look more on jquery .each.
-            var userSelectedAnswerChoiceInput = $(this).find('input:checked'); //this is the question div and .find is looking in the question div and trying to find which use input option is checked (which answer selected)
+            var userSelectedAnswerChoiceInput = $(this).find('input:checked'); //this is the question div and .find is looking in the question div and trying to find which user input option is checked (which answer selected)
             var userSelectedAnswerChoiceIndex = userSelectedAnswerChoiceInput.val();
 
             console.log(answerKey[index], userSelectedAnswerChoiceIndex);
             if (userSelectedAnswerChoiceIndex === answerKey[index]) {
                 console.log('got question ' + index + ' correct!')
+                CorrectAnswers++;
+                $('#correctAnswers').append(CorrectAnswers);
             } else {
                 console.log('got question ' + index + ' incorrect!')
-            }
-            console.log();
+                IncorrectAnswers++;
+                $('#incorrectAnswers').append(IncorrectAnswers);
+            } if 
+                (userSelectedAnswerChoiceIndex === " ") {  
+                Unanswered++;
+                $('#unanswered').append(Unanswered);
+                }
+
+    $('#correctAnswers').append(CorrectAnswers);
+            // console.log();
         })
     });
 }
@@ -123,6 +151,7 @@ function writeQuestion() {
     // }
 
 $(".btn-primary").click(writeQuestion);
-
+// function start () {
+//     timer = setInterval(game.countdown, 1000);
 
 });

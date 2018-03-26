@@ -1,0 +1,20 @@
+.jumbotron {
+    color:darkgreen;
+}
+
+.btn {
+    color: white;
+    background-color: #0a290a;
+}
+
+h3 {
+    margin-left: 40px;
+    color:#051405;
+}
+
+
+.questionStyle {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 40px;
+    font-size: 20px;
+}

@@ -5,19 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" 
-    
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
-    <!-- put your CSS on the bottom after the bootstrap link -->
-
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
+     <!-- put your CSS on the bottom after the bootstrap link -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-        <div class="jumbotron">
+        <div class="jumbotron blue">
                 <h1 class="display-4">Test your knowledge about sustainability</h1>
                 <p class="lead">Let's get started</p>
                 <hr class="my-4">
-                <p>Lorem Ipsum</p>
+
                 <p class="lead">
                   <a class="btn btn-primary btn-lg" href="#" role="button">Start Quiz</a>
                   <a id="submit" class="btn btn-lg" href="#" role="button">Done</a>
@@ -31,16 +28,20 @@
 
         <div id="questionsBucket">
           <div class="question">
-            <p>Sample question</p>
-            <div><input type="radio"> sample answer 1</div>
-              //each answer will have an onclick event - array of user answers
+            <!-- <p>Sample question</p> -->
+            <!-- <div><input type="radio"> sample answer 1</div> -->
+              <!-- //each answer will have an onclick event - array of user answers
             <div><input type="radio"> sample answer 2</div>
             <div><input type="radio"> sample answer 3</div>
-            <div><input type="radio"> sample answer 4</div>
+            <div><input type="radio"> sample answer 4</div> -->
 
           <!-- also will need a submit would have loop to move through answer key -->
-
           </div>
+        </div>
+        <div id="HideShowResults"></div>
+          <h3 id="correctAnswers">Correct Answers: </h1>
+          <h3 id="incorrectAnswers">Incorrect Answers: </h1>
+          <h3 id="unanswered">Unanswered: </h1>
         </div>
 
        <script
