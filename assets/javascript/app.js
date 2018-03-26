@@ -1,20 +1,6 @@
-//pseudo code:
-//quiz will start after player clicks on start quiz button
-//will need to ready document and use and onclick event to load quiz
-//A setTimer will be displayed counting down fo 1 minutes. set interval as well
-//All 10 questions will be displayed (dynamically created via JS)
-//Another array for answer choices
-// third array for answer key.
-//function - write question - then for loop to display questions from questions (only to display on screen)
-//loop to display questions to display questions onto screenonclick function
-//the player will only be able to click one multiple choice answer
-//Will have Finished button at end - need onclick event to show results
-//correct Answers:
-//Incorrect Answers:
-//Unanswered:
-//If time runs results will also display
 
 $(document).ready(function () {
+    $('#HideShowResults').hide;
     // $('.btn-btn-primary-btn-lg').click(function () {
     console.log("test!");
 
@@ -116,15 +102,15 @@ function writeQuestion() {
             if (userSelectedAnswerChoiceIndex === answerKey[index]) {
                 console.log('got question ' + index + ' correct!')
                 CorrectAnswers++;
-                $('#correctAnswers').append(CorrectAnswers);
+                $('#correctAnswers').append(userSelectedAnswerChoiceIndex);
             } else {
                 console.log('got question ' + index + ' incorrect!')
                 IncorrectAnswers++;
-                $('#incorrectAnswers').append(IncorrectAnswers);
+                $('#incorrectAnswers').append(IuserSelectedAnswerChoiceIndex);
             } if 
                 (userSelectedAnswerChoiceIndex === " ") {  
                 Unanswered++;
-                $('#unanswered').append(Unanswered);
+                $('#unanswered').append(userSelectedAnswerChoiceIndex);
                 }
 
     $('#correctAnswers').append(CorrectAnswers);
@@ -132,6 +118,8 @@ function writeQuestion() {
         })
     });
 }
+
+
 
 // function writeAnswerChoicesForQuestion(indexForQuestion) {
 //     var answerChoicesForQuestion = answerChoices[indexForQuestion];
@@ -150,8 +138,13 @@ function writeQuestion() {
     // // 
     // }
 
+    //onclick for start button; this will load questions and answers
 $(".btn-primary").click(writeQuestion);
 // function start () {
-//     timer = setInterval(game.countdown, 1000);
+//Need to have time start when Start button clicked
+//var timer = setInterval(game.countdown, 1000);
 
+//onclick to render user quiz results
+$(".submit").click();
+console.log("this is a test!");
 });
