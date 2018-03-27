@@ -1,6 +1,5 @@
 
 $(document).ready(function () {
-    $('#HideShowResults').hide;
     // $('.btn-btn-primary-btn-lg').click(function () {
     console.log("test!");
 
@@ -48,6 +47,10 @@ var answerChoices =[
 
 var answerKey = ["1", "0", "3", "0", "2", "3","0","0","1","3"];
 
+$('#correctAnswers').hide();
+$('#incorrectAnswers').hide();
+$('#unanswered').hide();
+$('#timer').hide();
 
 //write questions function. purpose is to only write questions onto screen
 function writeQuestion() {
@@ -91,26 +94,32 @@ function writeQuestion() {
     }
  
     $('#submit').on('click', function() {
+        $('#correctAnswers').show();
+        $('#incorrectAnswers').show();
+        $('#unanswered').show();
+        $('#timer').show();
+        $(questionDiv).hide(); //Trying to hide all questions answers, so only results will populate
         var questionDivs = $('.questionStyle'); // this gives us an array of all the question divs
         // $.each(elementsToLoopOver, cb);
         // questionDivs.each(cb);
         $.each(questionDivs, function (index) { //look more on jquery .each.
             var userSelectedAnswerChoiceInput = $(this).find('input:checked'); //this is the question div and .find is looking in the question div and trying to find which user input option is checked (which answer selected)
             var userSelectedAnswerChoiceIndex = userSelectedAnswerChoiceInput.val();
+            console.log("the user selected" + userSelectedAnswerChoiceIndex);
 
             console.log(answerKey[index], userSelectedAnswerChoiceIndex);
-            if (userSelectedAnswerChoiceIndex === answerKey[index]) {
+            if (userSelectedAnswerChoiceIndex === answerKey[i]) {
                 console.log('got question ' + index + ' correct!')
-                CorrectAnswers++;
                 $('#correctAnswers').append(userSelectedAnswerChoiceIndex);
+                CorrectAnswers++;
             } else {
                 console.log('got question ' + index + ' incorrect!')
+                $('#incorrectAnswers').append(userSelectedAnswerChoiceIndex);
                 IncorrectAnswers++;
-                $('#incorrectAnswers').append(IuserSelectedAnswerChoiceIndex);
             } if 
                 (userSelectedAnswerChoiceIndex === " ") {  
-                Unanswered++;
                 $('#unanswered').append(userSelectedAnswerChoiceIndex);
+                Unanswered++;
                 }
 
     $('#correctAnswers').append(CorrectAnswers);
@@ -140,11 +149,13 @@ function writeQuestion() {
 
     //onclick for start button; this will load questions and answers
 $(".btn-primary").click(writeQuestion);
+
+
 // function start () {
 //Need to have time start when Start button clicked
 //var timer = setInterval(game.countdown, 1000);
 
 //onclick to render user quiz results
-$(".submit").click();
-console.log("this is a test!");
+// $(".submit").click();
+// console.log("this is a test!");
 });
