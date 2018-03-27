@@ -108,6 +108,9 @@ function writeQuestion() {
             console.log("the user selected" + userSelectedAnswerChoiceIndex);
 
             console.log(answerKey[index], userSelectedAnswerChoiceIndex);
+
+            //////Below is a sample if statement that compares the value of the user input with the corresonding answerChoice[i] for that question. Need to put together this logic for each question.
+            // if ($(this).val() === answerChoices[indexpositionofthequestionhere].correctAnswer). 
             if (userSelectedAnswerChoiceIndex === answerKey[i]) {
                 console.log('got question ' + index + ' correct!')
                 $('#correctAnswers').append(userSelectedAnswerChoiceIndex);
